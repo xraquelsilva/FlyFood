@@ -52,37 +52,38 @@ for rotas in permutados:
     rotas.append('R')
     # print(rotas) #Fim apenas didádico
 
-#Função de menor valor
-def minimo(lista): 
-    menor_custo = float('inf')
-    for item in lista:
-        try:
-            valor = int(item)
-            if valor < menor_custo:
-                menor_custo = valor
-        except:
-            pass
-    return menor_custo
-  
-#Cálculo da distância
-for rotas in permutados:
-    #Gasto atual do percurso, acúmulo, todas as distâncias
-    dronometros = 0
-    dronometros_gastos = 0
+def distancias_em_lista(rotas): #Vai pegar todas as distâncias
     distancias = []
-
     for dronometros in range(len(rotas)-1):
-            di = abs(coordenadas[rotas[dronometros]][0] - coordenadas[rotas[dronometros+1]][0])
-            dj = abs(coordenadas[rotas[dronometros]][1] - coordenadas[rotas[dronometros+1]][1])
-            dij = di + dj
-            dronometros_gastos =+ dij
-            dronometros += 1
-            distancias.append(dronometros)
-            distancia = sum(distancias)
-    
-    if dronometros_gastos < distancia:
-        menor_custo = distancia
+        di = abs(coordenadas[rotas[dronometros]][0] - coordenadas[rotas[dronometros+1]][0])
+        dj = abs(coordenadas[rotas[dronometros]][1] - coordenadas[rotas[dronometros+1]][1])
+        dij = di + dj
+        distancias.append(dij)
+    return distancias
 
-# print(distancia) #Fim apenas didádico
+def distancia_total(lista_de_pontos):
+    gasto = 0
+    for distancia_computada in lista_de_pontos:
+        gasto += distancia_computada
+    return gasto
 
-print(f'O menor percurso possui como sequência os pontos: {str(rotas)[1:-1]} de custo {menor_custo}')
+dronometros = 0
+resultados = []
+for rotas in permutados:
+    distancia = distancias_em_lista(rotas)
+    result = distancia_total(distancia)
+    dronometros += result
+    resultados.append(result)
+
+uso_de_dronometros = 0
+for melhor_distancia in range(len(resultados)):
+    if resultados[melhor_distancia] < resultados[uso_de_dronometros]:
+        uso_de_dronometros = melhor_distancia
+
+def informar_menor_sequencia(permutados):
+    menor_rota = ""
+    for rotas in permutados[uso_de_dronometros]:
+        menor_rota += str(rotas)
+    return menor_rota
+
+print(f"O menor percurso possui como sequência os pontos: {informar_menor_sequencia(permutados)} de custo {resultados[uso_de_dronometros]}.")
