@@ -71,9 +71,9 @@ dronometros = 0
 resultados = []
 for rotas in permutados:
     distancia = distancias_em_lista(rotas)
-    result = distancia_total(distancia)
-    dronometros += result
-    resultados.append(result)
+    resulto = distancia_total(distancia)
+    dronometros += resulto
+    resultados.append(resulto)
 
 uso_de_dronometros = 0
 for melhor_distancia in range(len(resultados)):
