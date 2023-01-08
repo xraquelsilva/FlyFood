@@ -52,6 +52,12 @@ for rotas in permutados:
     rotas.append('R')
     # print(rotas) #Fim apenas didádico
 
+def distancia_total(lista_de_pontos):
+    gasto = 0
+    for distancia_computada in lista_de_pontos:
+        gasto += distancia_computada
+    return gasto
+
 def distancias_em_lista(rotas): #Vai pegar todas as distâncias
     distancias = []
     for dronometros in range(len(rotas)-1):
@@ -61,29 +67,19 @@ def distancias_em_lista(rotas): #Vai pegar todas as distâncias
         distancias.append(dij)
     return distancias
 
-def distancia_total(lista_de_pontos):
-    gasto = 0
-    for distancia_computada in lista_de_pontos:
-        gasto += distancia_computada
-    return gasto
-
 dronometros = 0
+gasto_dronometros = 0
 resultados = []
 for rotas in permutados:
     distancia = distancias_em_lista(rotas)
     resulto = distancia_total(distancia)
     dronometros += resulto
     resultados.append(resulto)
+    for menor_dist in range(len(resultados)):
+        if resultados[menor_dist] < resultados[gasto_dronometros]:
+            gasto_dronometros = menor_dist
+            menor_rota = ""
+            for rotas in permutados[gasto_dronometros]:
+                menor_rota += str(rotas)
 
-uso_de_dronometros = 0
-for melhor_distancia in range(len(resultados)):
-    if resultados[melhor_distancia] < resultados[uso_de_dronometros]:
-        uso_de_dronometros = melhor_distancia
-
-def informar_menor_sequencia(permutados):
-    menor_rota = ""
-    for rotas in permutados[uso_de_dronometros]:
-        menor_rota += str(rotas)
-    return menor_rota
-
-print(f"O menor percurso possui como sequência os pontos: {informar_menor_sequencia(permutados)} de custo {resultados[uso_de_dronometros]}.")
+print(f"O menor percurso possui como sequência os pontos: {menor_rota} de custo {resultados[gasto_dronometros]}.")
