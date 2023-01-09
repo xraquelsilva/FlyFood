@@ -26,6 +26,7 @@ linhas, colunas = [int(x) for x in entrada.readline().split()]
 #Dicionário que guarda os pontos de entrega com suas coordenadas
 coordenadas = {}
 
+#Manipulação das linhas e colunas para retirar os '0' e pegar as coordenadas dos pontos
 for l in range(linhas):
     linha = entrada.readline().split()
     for c in range(colunas):
@@ -67,10 +68,10 @@ def distancias_em_lista(rotas): #Vai pegar todas as distâncias
         distancias.append(dij)
     return distancias
 
-dronometros = 0
-gasto_dronometros = 0
 resultados = []
 for rotas in permutados:
+    dronometros = 0
+    gasto_dronometros = 0
     distancia = distancias_em_lista(rotas)
     resulto = distancia_total(distancia)
     dronometros += resulto
@@ -78,8 +79,8 @@ for rotas in permutados:
     for menor_dist in range(len(resultados)):
         if resultados[menor_dist] < resultados[gasto_dronometros]:
             gasto_dronometros = menor_dist
-            menor_rota = ""
+            menor_rota = ''
             for rotas in permutados[gasto_dronometros]:
                 menor_rota += str(rotas)
 
-print(f"O menor percurso possui como sequência os pontos: {menor_rota} de custo {resultados[gasto_dronometros]}.")
+print(f"O menor percurso possui como sequência os pontos: {menor_rota} de custo {resultados[gasto_dronometros]} dronômetros.")
