@@ -15,8 +15,8 @@ def permutacao(matriz):
     else:
         for index, elemento in enumerate(matriz): #Pega cada elemento da lista e posição correspondente
             el_seguinte = matriz[:index] + matriz[index+1:] #Passa para o próximo elemento da lista
-            for p in permutacao(el_seguinte):
-                matriz_auxiliar.append([elemento] + p)
+            for p in permutacao(el_seguinte): #O último elemento é considerado com p
+                matriz_auxiliar.append([elemento] + p) #P é adicionado com o elemento anterior em diferente índice
         return matriz_auxiliar #retorna a lista de permutações
 
 #Leitura da entrada (arquivo)
