@@ -56,10 +56,10 @@ for rotas in permutados:
     # print(rotas) #Fim apenas didádico
 
 #Função de cálculo da distância de cada sequência
-def distancia_total(lista_de_pontos):
+def busca_total(sequencia):
     #Cada sequência, iniciando em R, tem gasto 0
     gasto = 0
-    for distancia_computada in lista_de_pontos:
+    for distancia_computada in sequencia:
         #Iteração a cada mudança de ponto a outro
         gasto += distancia_computada
     return gasto
@@ -82,7 +82,7 @@ for rotas in permutados:
     #Uma nova variável receberá o retorno da função do cálculo das distâncias para cada rota
     distancia = distancias_em_lista(rotas)
     #Outra variável receberá o retorno da função de gasto total para as distâncias de cada rota
-    resulto = distancia_total(distancia)
+    resulto = busca_total(distancia)
     #O gasto atual do percurso será atualizado para a distância computada
     dronometros += resulto
     #Uma nova lista irá armazenar esses valores, um a um, mostrando o gasto de cada permutação possível
@@ -92,7 +92,7 @@ for rotas in permutados:
         #A cada iteração será computado o considerado mínimo até que haja atualização final
         if resultados[menor_dist] < resultados[gasto_dronometros]:
             gasto_dronometros = menor_dist #Atualização do valor
-            menor_rota = ''
+            menor_rota = ""
             #Para a sequência de pontos permutados com menor gasto de dronômetros, assume-se como menor rota
             for rotas in permutados[gasto_dronometros]:
                 menor_rota += str(rotas)
