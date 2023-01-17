@@ -18,7 +18,14 @@ def permutacao(matriz):
             for p in permutacao(el_seguinte): #O último elemento é considerado com p
                 matriz_auxiliar.append([elemento] + p) #P é adicionado com o elemento anterior em diferente índice
         return matriz_auxiliar #retorna a lista de permutações
-
+  
+#Função fatorial para Pn = n!
+def fat(n):
+    if n == 0 or n == 1: #Casos bases
+        return 1
+    else:
+        return n*fat(n-1) #Retorna quantidade de rotas possíveis
+    
 #Leitura da entrada (arquivo)
 entrada = open("matrix.txt", 'r')
 
@@ -44,6 +51,9 @@ entrada.close()
 pontos_de_entrega.remove('R') #Ponto inicial não permuta
 
 # print (pontos_de_entrega) #Fim apenas didádico
+
+#Quantidade de permutações possíveis dos pontos de entrega
+qntde = fat(len(pontos_de_entrega))
 
 #Todas as permutações possíveis
 permutados = list(permutacao(pontos_de_entrega))
