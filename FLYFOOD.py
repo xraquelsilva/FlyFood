@@ -3,10 +3,6 @@
 # Raquel Silva dos Santos
 # Projeto Interdisciplinar para Sistemas de Informação II: Algoritmo de força bruta (VA1) - Flyfood
 
-import time
-
-inicio = time.time()
-
 pontos_de_entrega = [] #Lista que guardará os pontos de entrega
 
 #Função de permutação de pontos
@@ -101,6 +97,3 @@ for rotas in permutados:
             menor_rota += str(rotas)
 
 print(f"A matriz de entrada possui {qntde} rotas possíveis. O menor percurso possui como sequência os pontos: {menor_rota} de custo {resultados[gasto_dronometros]} dronômetros.")
-
-fim = time.time()
-print(fim - inicio)
