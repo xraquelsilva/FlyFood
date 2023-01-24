@@ -3,6 +3,10 @@
 # Raquel Silva dos Santos
 # Projeto Interdisciplinar para Sistemas de Informação II: Algoritmo de força bruta (VA1) - Flyfood
 
+import time
+
+inicio = time.time()
+
 pontos_de_entrega = [] #Lista que guardará os pontos de entrega
 
 #Função de permutação de pontos
@@ -18,14 +22,14 @@ def permutacao(matriz):
             for p in permutacao(el_seguinte): #O último elemento é considerado com p
                 matriz_auxiliar.append([elemento] + p) #P é adicionado com o elemento anterior em diferente índice
         return matriz_auxiliar #retorna a lista de permutações
-  
+
 #Função fatorial para Pn = n!
 def fat(n):
     if n == 0 or n == 1: #Casos bases
         return 1
     else:
         return n*fat(n-1) #Retorna quantidade de rotas possíveis
-    
+
 #Leitura da entrada (arquivo)
 entrada = open("matrix.txt", 'r')
 
@@ -65,15 +69,6 @@ for rotas in permutados:
     rotas.append('R')
     # print(rotas) #Fim apenas didádico
 
-#Função de cálculo da distância de cada sequência
-def busca_total(sequencia):
-    #Cada sequência, iniciando em R, tem gasto 0
-    gasto = 0
-    for distancia_computada in sequencia:
-        #Iteração a cada mudança de ponto a outro
-        gasto += distancia_computada
-    return gasto
-
 def distancias_em_lista(rotas): #Vai pegar todas as distâncias e calcular entre as sequências, de acordo com as coordenadas
     distancias = [] #Armazenar em uma lista a distância entre cada dois pontos
     for dronometros in range(len(rotas)-1):
@@ -83,7 +78,7 @@ def distancias_em_lista(rotas): #Vai pegar todas as distâncias e calcular entre
         dij += abs(coordenadas[rotas[dronometros]][0] - coordenadas[rotas[dronometros+1]][0]) + abs(coordenadas[rotas[dronometros]][1] - coordenadas[rotas[dronometros+1]][1])
         #Este valor será armazenado na lista previamente criada
         distancias.append(dij)
-    return distancias
+    return sum(distancias)
 
 resultados = []
 for rotas in permutados:
@@ -91,20 +86,21 @@ for rotas in permutados:
     gasto_dronometros = 0 #Acúmulo do percurso
     #Uma nova variável receberá o retorno da função do cálculo das distâncias para cada rota
     distancia = distancias_em_lista(rotas)
-    #Outra variável receberá o retorno da função de gasto total para as distâncias de cada rota
-    resulto = busca_total(distancia)
     #O gasto atual do percurso será atualizado para a distância computada
-    dronometros += resulto
+    dronometros += distancia
     #Uma nova lista irá armazenar esses valores, um a um, mostrando o gasto de cada permutação possível
-    resultados.append(resulto)
+    resultados.append(distancia)
     # print(resultados) #Fim apenas didático
     for menor_dist in range(len(resultados)):
         #A cada iteração será computado o considerado mínimo até que haja atualização final
         if resultados[menor_dist] < resultados[gasto_dronometros]:
             gasto_dronometros = menor_dist #Atualização do valor
-            menor_rota = ""
-            #Para a sequência de pontos permutados com menor gasto de dronômetros, assume-se como menor rota
-            for rotas in permutados[gasto_dronometros]:
-                menor_rota += str(rotas)
+            #Para a sequência de pontos permutados com menor gasto de dronômetros, assume-se como menor rota 
+        menor_rota = ''
+        for rotas in permutados[gasto_dronometros]:
+            menor_rota += str(rotas)
 
-print(f"O menor percurso possui como sequência os pontos: {menor_rota} de custo {resultados[gasto_dronometros]} dronômetros.")
+print(f"A matriz de entrada possui {qntde} rotas possíveis. O menor percurso possui como sequência os pontos: {menor_rota} de custo {resultados[gasto_dronometros]} dronômetros.")
+
+fim = time.time()
+print(fim - inicio)
