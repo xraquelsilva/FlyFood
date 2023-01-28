@@ -2,7 +2,7 @@
 # Bacharelado em Sistemas de Informação
 # Raquel Silva dos Santos
 # Projeto Interdisciplinar para Sistemas de Informação II: Algoritmo de força bruta (VA1) - Flyfood
-#Versão com import time (fim de comparação) e sem comentários
+# Versão com import time (fim de comparação) e sem comentários
 
 import time
 
@@ -69,6 +69,7 @@ for rotas in permutados:
     distancia = distancias_em_lista(rotas)
     dronometros += distancia
     resultados.append(distancia)
+    # print(resultados) #Fim apenas didático
     for menor_dist in range(len(resultados)):
         if resultados[menor_dist] < resultados[gasto_dronometros]:
             gasto_dronometros = menor_dist #Atualização do valor
