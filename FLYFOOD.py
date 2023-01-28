@@ -2,6 +2,7 @@
 # Bacharelado em Sistemas de Informação
 # Raquel Silva dos Santos
 # Projeto Interdisciplinar para Sistemas de Informação II: Algoritmo de força bruta (VA1) - Flyfood
+# Versão comentada e sem tempo de execução
 
 pontos_de_entrega = [] #Lista que guardará os pontos de entrega
 
@@ -57,13 +58,6 @@ qntde = fat(len(pontos_de_entrega))
 #Todas as permutações possíveis
 permutados = list(permutacao(pontos_de_entrega))
 
-#Adicionar, novamente, após permutações, o restaurante
-for rotas in permutados:
-    #Adicionar elemento inicial (posição 0) e de retorno (posição final)
-    rotas.insert(0, 'R')
-    rotas.append('R')
-    # print(rotas) #Fim apenas didádico
-
 def distancias_em_lista(rotas): #Vai pegar todas as distâncias e calcular entre as sequências, de acordo com as coordenadas
     distancias = [] #Armazenar em uma lista a distância entre cada dois pontos
     for dronometros in range(len(rotas)-1):
@@ -77,6 +71,11 @@ def distancias_em_lista(rotas): #Vai pegar todas as distâncias e calcular entre
 
 resultados = []
 for rotas in permutados:
+    #Adicionar, novamente, após permutações, o restaurante
+    #Adicionar elemento inicial (posição 0) e de retorno (posição final)
+    rotas.insert(0, 'R')
+    rotas.append('R')
+    # print(rotas) #Fim apenas didádico
     dronometros = 0 #Gasto atual do percurso
     gasto_dronometros = 0 #Acúmulo do percurso
     #Uma nova variável receberá o retorno da função do cálculo das distâncias para cada rota
@@ -87,10 +86,10 @@ for rotas in permutados:
     resultados.append(distancia)
     # print(resultados) #Fim apenas didático
     for menor_dist in range(len(resultados)):
-        #A cada iteração será computado o considerado mínimo até que haja atualização final
+    #A cada iteração será computado o considerado mínimo até que haja atualização final
         if resultados[menor_dist] < resultados[gasto_dronometros]:
             gasto_dronometros = menor_dist #Atualização do valor
-            #Para a sequência de pontos permutados com menor gasto de dronômetros, assume-se como menor rota 
+                #Para a sequência de pontos permutados com menor gasto de dronômetros, assume-se como menor rota 
         menor_rota = ''
         for rotas in permutados[gasto_dronometros]:
             menor_rota += str(rotas)
