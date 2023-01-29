@@ -56,7 +56,7 @@ entrada.close()
 qntde = fat(len(pontos_de_entrega))
 
 #Todas as permutações possíveis
-permutados = list(permutacao(pontos_de_entrega))
+permutados = permutacao(pontos_de_entrega)
 
 def distancias_em_lista(rotas): #Vai pegar todas as distâncias e calcular entre as sequências, de acordo com as coordenadas
     distancias = [] #Armazenar em uma lista a distância entre cada dois pontos
