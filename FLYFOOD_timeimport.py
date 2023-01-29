@@ -8,19 +8,19 @@ import time
 
 inicio = time.time()
 
-pontos_de_entrega = []
+pontos_de_entrega = [] 
 
 def permutacao(matriz):
     matriz_auxiliar = []
     if len(matriz) == 0 or len(matriz) == 1:
         return [matriz]
     else:
-        for index, elemento in enumerate(matriz): 
+        for index, elemento in enumerate(matriz):
             el_seguinte = matriz[:index] + matriz[index+1:]
             for p in permutacao(el_seguinte):
                 matriz_auxiliar.append([elemento] + p)
         return matriz_auxiliar
-
+    
 def fat(n):
     if n == 0 or n == 1:
         return 1
@@ -36,15 +36,14 @@ coordenadas = {}
 for l in range(i):
     linha = entrada.readline().split()
     for c in range(j):
-        if linha[c] != '0':
+        if linha[c] != 'R' and linha[c] != '0': #Ponto 'R' não permuta
             pontos_de_entrega.append(linha[c])
+        if linha[c] != '0':
             coordenadas[linha[c]] = (l, c)
 
 entrada.close() 
 
 # print(coordenadas) #Fim apenas didádico
-
-pontos_de_entrega.remove('R')
 
 # print (pontos_de_entrega) #Fim apenas didádico
 
@@ -64,6 +63,7 @@ resultados = []
 for rotas in permutados:
     rotas.insert(0, 'R')
     rotas.append('R')
+    # print(rotas) #Fim apenas didádico
     dronometros = 0
     gasto_dronometros = 0
     distancia = distancias_em_lista(rotas)
@@ -78,6 +78,5 @@ for rotas in permutados:
             menor_rota += str(rotas)
 
 print(f"A matriz de entrada possui {qntde} rotas possíveis. O menor percurso possui como sequência os pontos: {menor_rota} de custo {resultados[gasto_dronometros]} dronômetros.")
-
 fim = time.time()
 print(fim - inicio)
