@@ -72,7 +72,7 @@ for rotas in permutados:
     # print(resultados) #Fim apenas didático
     for menor_dist in range(len(resultados)):
         if resultados[menor_dist] < resultados[gasto_dronometros]:
-            gasto_dronometros = menor_dist #Atualização do valor
+            gasto_dronometros = menor_dist
         menor_rota = ''
         for rotas in permutados[gasto_dronometros]:
             menor_rota += str(rotas)
