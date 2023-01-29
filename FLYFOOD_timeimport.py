@@ -36,7 +36,7 @@ coordenadas = {}
 for l in range(i):
     linha = entrada.readline().split()
     for c in range(j):
-        if linha[c] != 'R' and linha[c] != '0': #Ponto 'R' não permuta
+        if linha[c] != 'R' and linha[c] != '0':
             pontos_de_entrega.append(linha[c])
         if linha[c] != '0':
             coordenadas[linha[c]] = (l, c)
