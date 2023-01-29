@@ -50,7 +50,7 @@ pontos_de_entrega.remove('R')
 
 qntde = fat(len(pontos_de_entrega))
 
-permutados = list(permutacao(pontos_de_entrega))
+permutados = permutacao(pontos_de_entrega)
 
 def distancias_em_lista(rotas):
     distancias = []
