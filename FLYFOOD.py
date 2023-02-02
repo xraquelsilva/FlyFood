@@ -15,12 +15,12 @@ def permutacao(lista): #Age em uma lista de entrada, nesse caso, os pontos da ma
     else:
         aux_list = [] #É uma lista auxiliar que guardará todas permutações dos elementos da matriz (pontos)
         for indice in range(len(lista)): #Vai passar por todos os índices da lista de entrada
-            chave = lista[indice] #O índice atual no loop vai "travar" elemento a elemento a cada iteração
-            restante_elementos = lista[:indice] + lista[indice + 1:] #O restante da lista (exceção do que está travado) será atribuída a uma nova variável
-            rest_el_permutados = permutacao(restante_elementos) #A nova variável irá chamar a própria função para realizar a permutação do restante da lista
+            el_fixo = lista[indice] #O índice atual no loop vai "travar" elemento a elemento a cada iteração
+            rest_elementos = lista[:indice] + lista[indice + 1:] #O restante da lista (exceção do que está travado) será atribuída a uma nova variável
+            rest_el_permutados = permutacao(rest_elementos) #A nova variável irá chamar a própria função para realizar a permutação do restante da lista
             contador_indice = 0
             while contador_indice < len(rest_el_permutados): #contador precisa ser = a quantidade de elementos na lista dos elementos restantes permutados
-                x = [chave] + rest_el_permutados[contador_indice] #Elemento travado + elemento no índice do contador
+                x = [el_fixo] + rest_el_permutados[contador_indice] #Elemento travado + elemento no índice do contador
                 aux_list.append(x)
                 contador_indice += 1 #Incrementa em uma unidade para próxima permutação possível
         return aux_list
