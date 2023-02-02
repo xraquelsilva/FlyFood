@@ -16,12 +16,12 @@ def permutacao(lista):
     else:
         aux_list = []
         for indice in range(len(lista)):
-            chave = lista[indice]
+            el_fixo = lista[indice]
             rest_elementos = lista[:indice] + lista[indice + 1:]
             rest_el_permutados = permutacao(rest_elementos)
             contador_indice = 0
             while contador_indice < len(rest_el_permutados):
-                x = [chave] + rest_el_permutados[contador_indice]
+                x = [el_fixo] + rest_el_permutados[contador_indice]
                 aux_list.append(x)
                 contador_indice += 1
         return aux_list
