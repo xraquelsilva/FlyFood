@@ -10,16 +10,21 @@ inicio = time.time()
 
 pontos_de_entrega = [] 
 
-def permutacao(matriz):
-    matriz_auxiliar = []
-    if len(matriz) == 0 or len(matriz) == 1:
-        return [matriz]
+def permutacao(lista):
+    if len(lista) == 0 or len(lista) == 1:
+        return [lista]
     else:
-        for index, elemento in enumerate(matriz):
-            el_seguinte = matriz[:index] + matriz[index+1:]
-            for p in permutacao(el_seguinte):
-                matriz_auxiliar.append([elemento] + p)
-        return matriz_auxiliar
+        aux_list = []
+        for indice in range(len(lista)):
+            chave = lista[indice]
+            rest_elementos = lista[:indice] + lista[indice + 1:]
+            rest_el_permutados = permutacao(rest_elementos)
+            contador_indice = 0
+            while contador_indice < len(rest_el_permutados):
+                x = [chave] + rest_el_permutados[contador_indice]
+                aux_list.append(x)
+                contador_indice += 1
+        return aux_list
     
 def fat(n):
     if n == 0 or n == 1:
