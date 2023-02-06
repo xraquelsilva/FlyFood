@@ -60,7 +60,9 @@ def distancias_em_lista(rotas):
     distancias = []
     for dronometros in range(len(rotas)-1):
         dij = 0
-        dij += abs(coordenadas[rotas[dronometros]][0] - coordenadas[rotas[dronometros+1]][0]) + abs(coordenadas[rotas[dronometros]][1] - coordenadas[rotas[dronometros+1]][1])
+        di = abs(coordenadas[rotas[dronometros]][0] - coordenadas[rotas[dronometros+1]][0])
+        dj = abs(coordenadas[rotas[dronometros]][1] - coordenadas[rotas[dronometros+1]][1])
+        dij += di + dj
         distancias.append(dij)
     return sum(distancias)
 
@@ -75,12 +77,10 @@ for rotas in permutados:
     dronometros += distancia
     resultados.append(distancia)
     # print(resultados) #Fim apenas didático
-    for menor_dist in range(len(resultados)):
-        if resultados[menor_dist] < resultados[gasto_dronometros]:
-            gasto_dronometros = menor_dist
-        menor_rota = ''
-        for rotas in permutados[gasto_dronometros]:
-            menor_rota += str(rotas)
+    for menor_sequencia in range(len(resultados)):
+        if resultados[menor_sequencia] < resultados[gasto_dronometros]:
+            gasto_dronometros = menor_sequencia
+    menor_rota = ''.join(str(rotas) for rotas in permutados[gasto_dronometros])
 
 print(f"A matriz de entrada possui {qntde} rotas possíveis. O menor percurso possui como sequência os pontos: {menor_rota} de custo {resultados[gasto_dronometros]} dronômetros.")
 fim = time.time()
