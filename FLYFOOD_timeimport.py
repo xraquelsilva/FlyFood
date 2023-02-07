@@ -56,13 +56,11 @@ qntde = fat(len(pontos_de_entrega))
 
 permutados = permutacao(pontos_de_entrega)
 
-def distancias_em_lista(rotas):
+def distancias_em_lista(lista):
     distancias = []
-    for dronometros in range(len(rotas)-1):
+    for dronometros in range(len(lista)-1):
         dij = 0
-        di = abs(coordenadas[rotas[dronometros]][0] - coordenadas[rotas[dronometros+1]][0])
-        dj = abs(coordenadas[rotas[dronometros]][1] - coordenadas[rotas[dronometros+1]][1])
-        dij += di + dj
+        dij += abs(coordenadas[lista[dronometros]][0] - coordenadas[lista[dronometros+1]][0]) + abs(coordenadas[lista[dronometros]][1] - coordenadas[lista[dronometros+1]][1])
         distancias.append(dij)
     return sum(distancias)
 
