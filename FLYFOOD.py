@@ -63,14 +63,16 @@ qntde = fat(len(pontos_de_entrega))
 #Todas as permutações possíveis
 permutados = permutacao(pontos_de_entrega)
 
-def distancias_em_lista(rotas): #Vai pegar todas as distâncias e calcular entre as sequências, de acordo com as coordenadas
+def distancias_em_lista(lista): #Vai pegar todas as distâncias e calcular entre as sequências, de acordo com as coordenadas
     distancias = [] #Armazenar em uma lista a distância entre cada dois pontos
-    for dronometros in range(len(rotas)-1):
+    for dronometros in range(len(lista)-1):
         dij = 0
-        #Cálculo da diferença entre uma coordenada e a seguinte (segue a lógica da 'Geometria do táxi'), em que:
-        #G(A,B) = |Ai - Bi| + |Aj - Bj|
-        dij += abs(coordenadas[rotas[dronometros]][0] - coordenadas[rotas[dronometros+1]][0]) + abs(coordenadas[rotas[dronometros]][1] - coordenadas[rotas[dronometros+1]][1])
-        #Este valor será armazenado na lista previamente criada
+            #Cálculo da diferença entre uma coordenada e a seguinte (segue a lógica da 'Geometria do táxi'), em que:
+            #G(A,B) = |Ai - Bi| + |Aj - Bj|
+        di = abs(coordenadas[lista[dronometros]][0] - coordenadas[lista[dronometros+1]][0])
+        dj = abs(coordenadas[lista[dronometros]][1] - coordenadas[lista[dronometros+1]][1])
+        dij += di + dj
+            #Este valor será armazenado na lista previamente criada
         distancias.append(dij)
     return sum(distancias)
 
