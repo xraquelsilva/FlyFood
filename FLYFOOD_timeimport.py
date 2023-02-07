@@ -13,24 +13,23 @@ pontos_de_entrega = []
 def permutacao(lista):
     if len(lista) == 0 or len(lista) == 1:
         return [lista]
-    else:
-        aux_list = []
-        for indice in range(len(lista)):
-            el_fixo = lista[indice]
-            rest_elementos = lista[:indice] + lista[indice + 1:]
-            rest_el_permutados = permutacao(rest_elementos)
-            contador_indice = 0
-            while contador_indice < len(rest_el_permutados):
-                x = [el_fixo] + rest_el_permutados[contador_indice]
-                aux_list.append(x)
-                contador_indice += 1
-        return aux_list
+    
+    aux_list = []
+    for indice in range(len(lista)):
+        el_fixo = lista[indice]
+        rest_elementos = lista[:indice] + lista[indice + 1:]
+        rest_el_permutados = permutacao(rest_elementos)
+        contador_indice = 0
+        while contador_indice < len(rest_el_permutados):
+            x = [el_fixo] + rest_el_permutados[contador_indice]
+            aux_list.append(x)
+            contador_indice += 1
+    return aux_list
     
 def fat(n):
     if n == 0 or n == 1:
         return 1
-    else:
-        return n*fat(n-1)
+    return n*fat(n-1)
 
 entrada = open("matrix.txt", 'r')
 
