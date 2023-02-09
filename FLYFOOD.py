@@ -77,15 +77,11 @@ for rotas in permutados:
     rotas.insert(0, 'R')
     rotas.append('R')
     # print(rotas) #Fim apenas didádico
-    dronometros = 0 #Gasto atual do percurso
-    gasto_dronometros = 0 #Acúmulo do percurso
     #Uma nova variável receberá o retorno da função do cálculo das distâncias para cada rota
     distancia = distancias_em_lista(rotas)
-    #O gasto atual do percurso será atualizado para a distância computada
-    dronometros += distancia
     #Uma nova lista irá armazenar esses valores, um a um, mostrando o gasto de cada permutação possível
     resultados.append(distancia)
-    # print(resultados) #Fim apenas didático
+    # print(resultados) #Fim apenas didático)
     menor_gasto = min(resultados) #Busca o menor valor na lista de resultados
     trilha_economico = resultados.index(menor_gasto) #Procura a sequência de pontos que possui o menor valor
     menor_rota = ''.join(str(rotas) for rotas in permutados[trilha_economico]) #Recuperar o menor valor e a rota em permutados que está relacionado a ele, convertendo para string
