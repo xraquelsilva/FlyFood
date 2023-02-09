@@ -22,8 +22,8 @@ def permutacao(lista): #Age em uma lista de entrada, nesse caso, os pontos da ma
 def fat(n):
     if n == 0 or n == 1: #Casos bases
         return 1
-    else:
-        return n*fat(n-1) #Retorna quantidade de rotas possíveis
+    #Passo recursivo
+    return n*fat(n-1) #Retorna quantidade de rotas possíveis
 
 #Leitura da entrada (arquivo)
 entrada = open("matrix.txt", 'r')
