@@ -83,7 +83,7 @@ for rotas in permutados:
     resultados.append(distancia)
     # print(resultados) #Fim apenas didático)
     menor_gasto = min(resultados) #Busca o menor valor na lista de resultados
-    trilha_economico = resultados.index(menor_gasto) #Procura a sequência de pontos que possui o menor valor
-    menor_rota = ''.join(str(rotas) for rotas in permutados[trilha_economico]) #Recuperar o menor valor e a rota em permutados que está relacionado a ele, convertendo para string
+    trilha_economica = resultados.index(menor_gasto) #Procura a sequência de pontos que possui o menor valor
+    menor_rota = ''.join(str(rotas) for rotas in permutados[trilha_economica]) #Recuperar o menor valor e a rota em permutados que está relacionado a ele, convertendo para string
                           
 print(f"A matriz de entrada possui {qntde} rotas possíveis. O menor percurso possui como sequência os pontos: {menor_rota} de custo {menor_gasto} dronômetros.")
