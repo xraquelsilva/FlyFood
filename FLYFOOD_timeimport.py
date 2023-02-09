@@ -72,4 +72,3 @@ for rotas in permutados:
 print(f"A matriz de entrada possui {qntde} rotas possíveis. O menor percurso possui como sequência os pontos: {menor_rota} de custo {resultados[gasto_dronometros]} dronômetros.")
 fim = time.time()
 print(fim - inicio)
-=
