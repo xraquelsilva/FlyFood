@@ -69,6 +69,6 @@ for rotas in permutados:
     trilha_economica = resultados.index(menor_gasto)
     menor_rota = ''.join(str(rotas) for rotas in permutados[trilha_economica])
 
-print(f"A matriz de entrada possui {qntde} rotas possíveis. O menor percurso possui como sequência os pontos: {menor_rota} de custo {resultados[gasto_dronometros]} dronômetros.")
+print(f"A matriz de entrada possui {qntde} rotas possíveis. O menor percurso possui como sequência os pontos: {menor_rota} de custo {menor_gasto} dronômetros.")
 fim = time.time()
 print(fim - inicio)
