@@ -62,16 +62,12 @@ for rotas in permutados:
     rotas.insert(0, 'R')
     rotas.append('R')
     # print(rotas) #Fim apenas didádico
-    dronometros = 0
-    gasto_dronometros = 0
     distancia = distancias_em_lista(rotas)
-    dronometros += distancia
     resultados.append(distancia)
     # print(resultados) #Fim apenas didático
-    for menor_sequencia in range(len(resultados)):
-        if resultados[menor_sequencia] < resultados[gasto_dronometros]:
-            gasto_dronometros = menor_sequencia
-    menor_rota = ''.join(str(rotas) for rotas in permutados[gasto_dronometros])
+    menor_gasto = min(resultados)
+    trilha_economico = resultados.index(menor_gasto)
+    menor_rota = ''.join(str(rotas) for rotas in permutados[trilha_economico])
 
 print(f"A matriz de entrada possui {qntde} rotas possíveis. O menor percurso possui como sequência os pontos: {menor_rota} de custo {resultados[gasto_dronometros]} dronômetros.")
 fim = time.time()
