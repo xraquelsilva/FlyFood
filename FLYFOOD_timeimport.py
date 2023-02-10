@@ -19,11 +19,6 @@ def permutacao(lista):
         for p in permutacao(restantes):
             aux_list.append([elemento]+p)
     return aux_list
-    
-def fat(n):
-    if n == 0 or n == 1:
-        return 1
-    return n*fat(n-1)
 
 entrada = open("matrix.txt", 'r')
 
@@ -45,9 +40,11 @@ entrada.close()
 
 # print (pontos_de_entrega) #Fim apenas didádico
 
-qntde = fat(len(pontos_de_entrega))
-
 permutados = permutacao(pontos_de_entrega)
+
+for rotas in permutados:
+    rotas.insert(0, 'R')
+    rotas.append('R')
 
 def distancias_em_lista(lista):
     distancias = []
@@ -59,8 +56,6 @@ def distancias_em_lista(lista):
 
 resultados = []
 for rotas in permutados:
-    rotas.insert(0, 'R')
-    rotas.append('R')
     # print(rotas) #Fim apenas didádico
     distancia = distancias_em_lista(rotas)
     resultados.append(distancia)
@@ -69,6 +64,6 @@ for rotas in permutados:
     trilha_economica = resultados.index(menor_gasto)
     menor_rota = ''.join(str(rotas) for rotas in permutados[trilha_economica])
 
-print(f"A matriz de entrada possui {qntde} rotas possíveis. O menor percurso possui como sequência os pontos: {menor_rota} de custo {menor_gasto} dronômetros.")
+print(f"O menor percurso possui como sequência os pontos: {menor_rota} de custo {menor_gasto} dronômetros.")
 fim = time.time()
 print(fim - inicio)
