@@ -120,20 +120,26 @@ def selecao_sobreviventes(populacao, aptidao_populacao, filhos, aptidao_filhos):
     #Combina os indivíduos da população atual e os filhos gerados em uma única lista
     individuos = populacao + filhos
     aptidoes = aptidao_populacao + aptidao_filhos
+    #Encontra o índice do indivíduo menos apto da lista combinada
+    indice_menos_apto = aptidoes.index(min(aptidoes))
+    #Substitui o indivíduo menos apto pela cópia do mais apto da geração anterior
+    if aptidao_populacao[0] < aptidoes[indice_menos_apto]:
+        individuos[indice_menos_apto] = populacao[0].copy()
+        aptidoes[indice_menos_apto] = aptidao_populacao[0]
     #Cria uma lista de índices para a lista de indivíduos
     indices = list(range(len(individuos)))
-    #Orndena essa lista de acordo com o valor da aptidão de cada indivíduo em ordem decrescente
+    #Ordena essa lista de acordo com o valor da aptidão de cada indivíduo em ordem crescente
     for i in range(len(individuos)):
         for j in range(i+1, len(individuos)):
             if aptidoes[j] < aptidoes[i]:
                 aptidoes[i], individuos[i], indices[i] = aptidoes[j], individuos[j], indices[j]
-                aptidoes[j], individuos[j], indices[j]= aptidoes[i], individuos[i], indices[i] 
+                aptidoes[j], individuos[j], indices[j] = aptidoes[i], individuos[i], indices[i]
     #Seleção dos N indivíduos mais aptos da lista combinada
     selecionados = []
-    for _ in indices[:len(populacao)]:
-        selecionados.append(individuos[j])
+    for x in indices[:len(populacao)]:
+        selecionados.append(individuos[x])
     aptidoes_selecionados = aptidoes[:len(populacao)]
-    #Lista de indivíduos selecionados e a lista de aptidões correspondentes
+    # Lista de indivíduos selecionados e a lista de aptidões correspondentes
     return selecionados, aptidoes_selecionados
 
 #Evolução
