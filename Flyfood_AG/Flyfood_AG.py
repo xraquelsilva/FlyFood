@@ -7,11 +7,11 @@ inicio = time.time()
 
 #Leitura do arquivo
 
-def read_tsp_file(file_path): #Função padrão de leitura
-    tsp = tsplib.load(file_path) #Recebe o arquivo .tsp
+def leitura_arquivo(file_path): #Função padrão de leitura
+    entrada = tsplib.load(file_path) #Recebe o arquivo .tsp
     coordenadas = [] #Informações são armazenadas em uma lista
     for i in range(1, tsp.dimension + 1):  
-        pontos = tsp.node_coords[i] #As coordenadas são obtidas e passadas para a lista declarada
+        pontos = entrada.node_coords[i] #As coordenadas são obtidas e passadas para a lista declarada
         coordenadas.append(pontos)
     cidades = {} #Cada ponto é uma chave e possui uma lista de dois valores chaveada
     for i, pontos in enumerate(coordenadas):
@@ -138,7 +138,7 @@ def evolucao_ag(taxa_cruzamento, taxa_mutacao, torneio, cidades, n_geracoes):
 
 
 def principal():
-    cidades = read_tsp_file("wi29.tsp")
+    cidades = leitura_arquivo("wi29.tsp")
     taxa_cruzamento = 0.9 #Cerca de 90% população é cruzada
     taxa_mutacao = 0.02 #Cerca de 2% dos genes de um indivíduo é mutado a cada geração
     torneio = 4
