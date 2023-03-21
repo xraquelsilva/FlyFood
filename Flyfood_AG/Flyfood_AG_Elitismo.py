@@ -114,26 +114,26 @@ def mutacao_populacao(populacao, taxa_mutacao, cidades):
         populacao[i] = mutacao_individuo(ind, taxa_mutacao, cidades) #Aplica a mutação em cada um deles
     return populacao #Retorna a população mutada
 
-#Substituição geracional (seleção sobreviventes)
+#Substituição geracional com elitismo (seleção sobreviventes)
 
 def selecao_sobreviventes(populacao, aptidao_populacao, filhos, aptidao_filhos):
-    # Combine os indivíduos da população atual e os filhos gerados em uma única lista
+    #Combina os indivíduos da população atual e os filhos gerados em uma única lista
     individuos = populacao + filhos
     aptidoes = aptidao_populacao + aptidao_filhos
-    # Crie uma lista de índices para a lista de indivíduos
+    #Cria uma lista de índices para a lista de indivíduos
     indices = list(range(len(individuos)))
-    # Ordene a lista combinada pelo valor da aptidão de cada indivíduo em ordem decrescente
+    #Orndena essa lista de acordo com o valor da aptidão de cada indivíduo em ordem decrescente
     for i in range(len(individuos)):
         for j in range(i+1, len(individuos)):
             if aptidoes[j] < aptidoes[i]:
                 aptidoes[i], individuos[i], indices[i] = aptidoes[j], individuos[j], indices[j]
                 aptidoes[j], individuos[j], indices[j]= aptidoes[i], individuos[i], indices[i] 
-    # Selecione os N indivíduos mais aptos da lista combinada
+    #Seleção dos N indivíduos mais aptos da lista combinada
     selecionados = []
-    for i in indices[:len(populacao)]:
-        selecionados.append(individuos[i])
+    for _ in indices[:len(populacao)]:
+        selecionados.append(individuos[j])
     aptidoes_selecionados = aptidoes[:len(populacao)]
-    # Retorne a lista de indivíduos selecionados e a lista de aptidões correspondentes
+    #Lista de indivíduos selecionados e a lista de aptidões correspondentes
     return selecionados, aptidoes_selecionados
 
 #Evolução
