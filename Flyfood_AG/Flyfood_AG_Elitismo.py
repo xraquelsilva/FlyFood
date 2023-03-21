@@ -3,7 +3,7 @@ import tsplib95 as tsplib
 
 #Leitura do arquivo
 
-def read_tsp_file(file_path): #Função padrão de leitura
+def leitura_arquivo(file_path): #Função padrão de leitura
     tsp = tsplib.load(file_path) #Recebe o arquivo .tsp
     coordenadas = [] #Informações são armazenadas em uma lista
     for i in range(1, tsp.dimension + 1):  
@@ -150,7 +150,7 @@ def evolucao_ag(taxa_cruzamento, taxa_mutacao, torneio, cidades, n_geracoes):
 
 
 def principal():
-    cidades = read_tsp_file("zi929.tsp")
+    cidades = leitura_arquivo("zi929.tsp")
     taxa_cruzamento = 0.9 #Cerca de 90% população é cruzada
     taxa_mutacao = 0.02 #Cerca de 2% dos genes de um indivíduo é mutado a cada geração
     torneio = 4
