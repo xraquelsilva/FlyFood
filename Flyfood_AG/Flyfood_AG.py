@@ -10,7 +10,7 @@ inicio = time.time()
 def leitura_arquivo(file_path): #Função padrão de leitura
     entrada = tsplib.load(file_path) #Recebe o arquivo .tsp
     coordenadas = [] #Informações são armazenadas em uma lista
-    for i in range(1, tsp.dimension + 1):  
+    for i in range(1, entrada.dimension + 1):  
         pontos = entrada.node_coords[i] #As coordenadas são obtidas e passadas para a lista declarada
         coordenadas.append(pontos)
     cidades = {} #Cada ponto é uma chave e possui uma lista de dois valores chaveada
